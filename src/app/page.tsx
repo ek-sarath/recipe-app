@@ -19,12 +19,14 @@ const recipes: Recipe[] = [
   { id: 3, name: "Spaghetti Carbonara", cookingTime: "50 minutes", difficulty: "Hard", imgUrl: CarbonoraImg },
 ];
 
+
+
 export default function Home() {
   return (
     <div>
       <div className="text-3xl text-black-500 font-bold ml-2 mt-2">Recipe App</div>
       <div className="grid grid-cols-5 gap-4 ml-12 mt-8">
-        {recipes.map((recipe) => (
+        {recipes?.map((recipe) => (
           <div key={recipe.id} className="bg-white rounded shadow-md p-4 w-64">
             <Image
               src={recipe.imgUrl}
@@ -35,7 +37,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold">{recipe.name}</h2>
             <p className="text-gray-600">{recipe.cookingTime}</p>
             <p className="text-gray-600">{recipe.difficulty}</p>
-            <Link className="font-bold text-blue-500 hover:text-blue-700" href={`/recipe/${recipe.id}`}>
+            <Link className="font-bold text-blue-500 hover:text-blue-700" href={`/recipe?id=${recipe.id}`}>
   View Details
 </Link>
           </div>
