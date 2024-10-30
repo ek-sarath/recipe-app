@@ -6,6 +6,7 @@ import StirFryImg from '../../public/beefStirFries.webp'
 import CarbonoraImg from '../../public/spaghettiCarbonara.webp'
 import type { StaticImageData } from "next/image";
 import { useState } from "react";
+import Header from "../app/header/page";
 
 interface Recipe {
   id: number;
@@ -23,8 +24,10 @@ const recipes: Recipe[] = [
 
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState(recipes)
-  function handleFilter(level) {
+
+  function handleFilter(level: string) {
     if(level==='All')
         setData(recipes);
     else
@@ -33,13 +36,21 @@ export default function Home() {
       setData(newData);
       }
    }
+
+   function handleSearch(query: string) {
+    const filteredData = recipes?.filter((recipe) =>
+      recipe.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setData(filteredData);
+    setSearchQuery(query);
+  }
    
   return (  
     <div>
-      <div className="text-3xl text-black-500 font-bold ml-2 mt-2">Recipe App</div>
-      <div className="grid grid-cols-5 gap-4 ml-12 mt-8">
+      <Header onSearch={handleSearch} />
+      <div className="display flex justify-center gap-8 ml-12 mt-8">
         {data?.map((recipe) => (
-          <div key={recipe.id} className="bg-white rounded shadow-md p-4 w-64">
+          <div key={recipe.id} className="bg-white rounded border shadow-md p-4 w-64">
             <Image
               src={recipe.imgUrl}
               alt={recipe.name} 
@@ -55,12 +66,36 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between m-12 gap-8 w-16">
-        <button onClick={()=>handleFilter('Easy')}>Easy</button>
-        <button onClick={()=>handleFilter('Medium')}>Medium</button>
-        <button onClick={()=>handleFilter('Hard')}>Hard</button>
-        <button onClick={()=>handleFilter('All')}>Clear</button>
-      </div>
+      <div className="flex justify-center mt-16 gap-4">
+        <button
+          type="button"
+          onClick={() => handleFilter('Easy')}
+          className="bg-green-200 hover:bg-green-400 text-green-700 font-bold py-2 px-4 rounded"
+        >
+          Easy
+        </button>
+        <button
+          type="button"
+          onClick={() => handleFilter('Medium')}
+          className="bg-yellow-200 hover:bg-yellow-400 text-yellow-700 font-bold py-2 px-4 rounded"
+        >
+          Medium
+        </button>
+        <button
+          type="button"
+          onClick={() => handleFilter('Hard')}
+          className="bg-red-200 hover:bg-red-400 text-red-700 font-bold py-2 px-4 rounded"
+        >
+          Hard
+        </button>
+  <button
+    type="button"
+    onClick={() => handleFilter('All')}
+    className="bg-blue-200 hover:bg-blue-400 text-blue-700 font-bold py-2 px-4 rounded"
+  >
+    Clear
+  </button>
+</div>
     </div>
   );
 }
