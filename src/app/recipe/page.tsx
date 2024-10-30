@@ -46,15 +46,31 @@ const recipes = [
 
 export default function RecipeDetailsPage() {
   const searchParams = useSearchParams();
-  const getId: unknown = searchParams?.get("id");
-  const recipe= recipes.find(({id}) => {
-    return id === getId
-  })
-  console.log(recipe);
-  
+  const getId: number = parseInt(searchParams?.get("id") as string);
+  const recipe= recipes.find((item)=>item.id===getId)
     return (
       <div className="text-center">
         <div>Recipe Details of item:{recipe?.name}</div> 
+        <div>Cooking time:{recipe?.cookingTime}</div>
+        <div>Difficulty:{recipe?.difficulty}</div>
+        <div>Ingredients :</div>
+        <div>
+          <ul>
+            {recipe?.ingredients.map((item)=>
+              <li key={item}>{item}</li>
+            )
+            }
+          </ul>
+          </div>
+          <div>Instructions :</div>
+          <div>
+          <ul>
+            {recipe?.instructions.map((item)=>
+              <li key={item}>{item}</li>
+            )
+            }
+          </ul>
+          </div>
       </div>     
     );
   }
