@@ -1,10 +1,10 @@
 "use client"
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 import { useState,useEffect } from "react";
-import PizzaImg from '../../../public/pizza.jpg'
-import StirFryImg from '../../../public/beefStirFries.webp'
-import CarbonoraImg from '../../../public/spaghettiCarbonara.webp'
+// import PizzaImg from '../../../public/pizza.jpg'
+// import StirFryImg from '../../../public/beefStirFries.webp'
+// import CarbonoraImg from '../../../public/spaghettiCarbonara.webp'
 
 export default function RecipeDetailsPage() {
   const [recipes, setRecipes] = useState(null)
@@ -21,7 +21,7 @@ export default function RecipeDetailsPage() {
   const getId: number = parseInt(searchParams?.get("id") as string);  
   const recipe= recipes?.find((item)=>item.id===getId)
     return (
-      <div className="mx-8 my-4 bg-blue-100 bg-opacity-50 border-2  mt-4 mb-4 rounded shadow-md p-12 w-90 h-85">
+      <div className="mx-8 my-4 bg-blue-100 bg-opacity-50 border mt-4 mb-4 rounded shadow-md p-12 w-90 h-85">
         <div className="font-bold text-center text-4xl"> {recipe?.name}</div> 
        <div className="mt-4"> 
         {/* <Image className="mx-auto"
