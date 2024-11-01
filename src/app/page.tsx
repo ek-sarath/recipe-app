@@ -25,16 +25,25 @@ const recipes: Recipe[] = [
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([]);
   const [data, setData] = useState(recipes)
 
   function handleFilter(level: string) {
-    if(level==='All')
+    if(level==='Clear')
+      {
+      setSelectedDifficulties([]);
         setData(recipes);
+      }
     else
       {
-      const newData = recipes?.filter((item)=>item.difficulty===level)
-      setData(newData);
-      }
+        setSelectedDifficulties((prev) => {
+          const isSelected = prev.includes(level);
+          const newSelected = isSelected ? prev.filter((item) => item !== level) : [...prev, level];
+          const newData = recipes?.filter((item)=>newSelected.length === 0 || newSelected.includes(item.difficulty))
+          setData(newData);
+          return newSelected
+      })
+    }
    }
 
    function handleSearch(query: string) {
@@ -60,41 +69,23 @@ export default function Home() {
             <h2 className="text-2xl font-bold">{recipe.name}</h2>
             <p className="text-gray-600">{recipe.cookingTime}</p>
             <p className="text-gray-600">{recipe.difficulty}</p>
-            <Link className="font-bold text-blue-500 hover:text-blue-700" href={`/recipe?id=${recipe.id}`}>
+            <Link className="font-bold text-blue-500 hover:text-blue-700" href={`/recipe/${recipe.id}`}>
   View Details
 </Link>
           </div>
         ))}
       </div>
       <div className="flex justify-center mt-16 gap-4">
-        <button
-          type="button"
-          onClick={() => handleFilter('Easy')}
-          className="bg-green-200 hover:bg-green-400 text-green-700 font-bold py-2 px-4 rounded"
-        >
-          Easy
-        </button>
-        <button
-          type="button"
-          onClick={() => handleFilter('Medium')}
-          className="bg-yellow-200 hover:bg-yellow-400 text-yellow-700 font-bold py-2 px-4 rounded"
-        >
-          Medium
-        </button>
-        <button
-          type="button"
-          onClick={() => handleFilter('Hard')}
-          className="bg-red-200 hover:bg-red-400 text-red-700 font-bold py-2 px-4 rounded"
-        >
-          Hard
-        </button>
-  <button
-    type="button"
-    onClick={() => handleFilter('All')}
-    className="bg-blue-200 hover:bg-blue-400 text-blue-700 font-bold py-2 px-4 rounded"
-  >
-    Clear
-  </button>
+        {['Easy','Medium','Hard','Clear'].map((level)=>(
+                  <button
+                  key={level}
+                  type="button"
+                  onClick={() => handleFilter(level)}
+                  className={`font-bold py-2 px-4 rounded ${selectedDifficulties?.includes(level) ? 'bg-green-600 hover:bg-green-400 text-white':'bg-green-200 hover:bg-green-400 text-green-700' }`}
+                >
+                  {level}
+                </button>
+        )        )}
 </div>
     </div>
   );

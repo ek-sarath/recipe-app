@@ -1,5 +1,5 @@
 "use client"
-import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 // import Image from "next/image";
 import { useState,useEffect } from "react";
 // import PizzaImg from '../../../public/pizza.jpg'
@@ -17,9 +17,9 @@ export default function RecipeDetailsPage() {
       })
   }, []);
   
-  const searchParams = useSearchParams();
-  const getId: number = parseInt(searchParams?.get("id") as string);  
-  const recipe= recipes?.find((item)=>item.id===getId)
+  const {id}: string = useParams();
+  const recipeId: number = parseInt(id as string);  
+  const recipe= recipes?.find((item)=>item.id===recipeId)
     return (
       <div className="mx-8 my-4 bg-blue-100 bg-opacity-50 border mt-4 mb-4 rounded shadow-md p-12 w-90 h-85">
         <div className="font-bold text-center text-4xl"> {recipe?.name}</div> 
