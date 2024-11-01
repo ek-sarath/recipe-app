@@ -1,5 +1,5 @@
 "use client"
-import { useSearchParams, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState,useEffect } from "react";
 
@@ -25,9 +25,9 @@ export default function RecipeDetailsPage() {
       })
   }, []);
   
-  const searchParams = useSearchParams();
-  const getId = parseInt(searchParams?.get("id") as string);
- const recipe= recipes?.find((item: Recipe) => item.id===getId);
+  const {id}: string = useParams();
+  const recipeId = parseInt(id as string);
+ const recipe= recipes?.find((item: Recipe) => item.id===recipeId);
 
     return (
       <div className="mx-12 my-6 bg-blue-100 bg-opacity-50 border rounded shadow-md p-4 w-90 h-50">
