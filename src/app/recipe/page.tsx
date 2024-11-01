@@ -30,11 +30,11 @@ export default function RecipeDetailsPage() {
  const recipe= recipes?.find((item: Recipe) => item.id===getId);
 
     return (
-      <div className="mx-8 my-4 bg-blue-100 bg-opacity-50 border mt-4 mb-4 rounded shadow-md p-12 w-90 h-85">
+      <div className="mx-12 my-6 bg-blue-100 bg-opacity-50 border rounded shadow-md p-4 w-90 h-50">
       <button
         type="button"
         onClick={() => router.push("/")}
-        className="mb-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-500 text-white ml-4 mt-1 px-4 py-2 rounded hover:bg-blue-700"
       >
         Back
       </button>
