@@ -24,7 +24,6 @@ const recipes: Recipe[] = [
 
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState(recipes)
 
   function handleFilter(level: string) {
@@ -38,11 +37,14 @@ export default function Home() {
    }
 
    function handleSearch(query: string) {
+    if (query.trim() === "") {
+      setData(recipes);
+    } else {
     const filteredData = recipes?.filter((recipe) =>
       recipe.name.toLowerCase().includes(query.toLowerCase())
     );
     setData(filteredData);
-    setSearchQuery(query);
+    }
   }
    
   return (  

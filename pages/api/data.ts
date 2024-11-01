@@ -25,7 +25,7 @@ export const recipes = [
     },
     {
       id: 2,
-      imgUrl: "https://cdn.shopify.com/s/files/1/0274/9503/9079/files/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg?v=1723650067?w=1024",
+      imgUrl: "https://www.seriouseats.com/thmb/PrXHCho78GT9sO7FRavm4KnKscI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__03__20150316-stir-fry-beef-with-chinese-broccoli-shao-zhong-12-5ecae35120554fdd96597bbb5cdfe06c.jpg",
       name: "Beef Stir Fry",
       cookingTime: "25 minutes",
       difficulty: "Medium",
@@ -46,7 +46,7 @@ export const recipes = [
     },
     {
       id: 3,
-      imgUrl: "https://cdn.shopify.com/s/files/1/0274/9503/9079/files/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg?v=1723650067?w=1024" ,
+      imgUrl: "https://www.allrecipes.com/thmb/QtmdHdH04CHgBbjUsISCm_RLTM0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg" ,
       name: "Spaghetti Carbonara",
       cookingTime: "50 minutes",
       difficulty: "Hard",
