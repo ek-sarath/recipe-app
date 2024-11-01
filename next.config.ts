@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
 };
 module.exports = {
   images: {
-    domains: ['cdn.shopify.com'],
+    domains: ['cdn.shopify.com', 'www.seriouseats.com', 'www.allrecipes.com'],
   },
 };
 
